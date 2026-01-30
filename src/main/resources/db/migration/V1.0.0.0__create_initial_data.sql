@@ -1,37 +1,8 @@
-CREATE SCHEMA if not exists sofka;
-ALTER SCHEMA sofka OWNER TO "sofka_owner";
-
---Persona
-CREATE table IF NOT EXISTS sofka.persona
-(
-    id_per                  BIGSERIAL primary key,
-    nombre_per              text NOT NULL,
-    genero_per              varchar(10),
-    edad_per                integer CHECK (edad_per >= 0) ,
-    identificacion_per      varchar(30) UNIQUE,
-    direccion_per           text NOT NULL,
-    telefono_per            varchar(10) NOT NULL
-);
-
-ALTER TABLE sofka.persona
-    OWNER to "sofka_owner";
-
---Cliente
-CREATE table IF NOT EXISTS sofka.cliente
-(
-    id_cli              BIGSERIAL primary key,
-    contrasenia_cli     text NOT NULL,
-    estado_cli          boolean NOT NULL,
-    id_per              bigint
-                        constraint fk_cliente_persona_id
-                        references sofka.persona(id_per)
-);
-
-ALTER TABLE sofka.cliente
-    OWNER to "sofka_owner";
+CREATE SCHEMA if not exists cuentas;
+ALTER SCHEMA cuentas OWNER TO "tata_owner";
 
 --Cuenta
-CREATE table IF NOT EXISTS sofka.cuenta
+CREATE table IF NOT EXISTS cuentas.cuenta
 (
     id_cue              BIGSERIAL primary key,
     numero_cue          text NOT NULL,
@@ -39,15 +10,13 @@ CREATE table IF NOT EXISTS sofka.cuenta
     saldo_inicial_cue   numeric(19, 2) NOT NULL,
     estado_cue          boolean NOT NULL,
     id_cli              bigint
-                    constraint fk_cuenta_cliente_id
-                    references sofka.cliente(id_cli)
 );
 
-ALTER TABLE sofka.cuenta
-    OWNER to "sofka_owner";
+ALTER TABLE cuentas.cuenta
+    OWNER to "tata_owner";
 
 --Movimiento
-CREATE table IF NOT EXISTS sofka.movimiento
+CREATE table IF NOT EXISTS cuentas.movimiento
 (
     id_mov          BIGSERIAL primary key,
     fecha_mov       timestamp NOT NULL,
@@ -56,18 +25,18 @@ CREATE table IF NOT EXISTS sofka.movimiento
     saldo_mov       numeric(19, 2) NOT NULL,
     id_cue          bigint
                     constraint fk_movimiento_cuenta_id
-                    references sofka.cuenta(id_cue)
+                    references cuentas.cuenta(id_cue)
 );
 
-ALTER TABLE sofka.movimiento
-    OWNER to "sofka_owner";
+ALTER TABLE cuentas.movimiento
+    OWNER to "tata_owner";
 
 -----GRANTS
 GRANT
 USAGE
 ON
 SCHEMA
-sofka TO "sofka_user";
+cuentas TO "tata_user";
 
 GRANT
 SELECT,
@@ -75,15 +44,15 @@ INSERT
 ,
 UPDATE,
 DELETE
-ON ALL TABLES IN SCHEMA sofka
-    TO "sofka_user";
+ON ALL TABLES IN SCHEMA cuentas
+    TO "tata_user";
 
 GRANT
 SELECT,
 UPDATE
     ON ALL
-    SEQUENCES IN SCHEMA sofka
-    TO "sofka_user";
+    SEQUENCES IN SCHEMA cuentas
+    TO "tata_user";
 
 GRANT
 SELECT,
@@ -91,4 +60,4 @@ INSERT,
 UPDATE,
 DELETE
 ON ALL TABLES IN SCHEMA public
-    TO "sofka_user";
+    TO "tata_user";
