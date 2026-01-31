@@ -27,12 +27,6 @@ public class ClienteDTO {
     @JsonProperty("telefono")
     private String telefono;
 
-    @JsonProperty("contrasenia")
-    private String contrasenia;
-
-    @JsonProperty("estado")
-    private Boolean estado;
-
     public ClienteDTO(String id, String nombre) {
         this.id = id;
         this.nombre = nombre;
@@ -95,21 +89,5 @@ public class ClienteDTO {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
     }
 }
