@@ -1,7 +1,6 @@
 package org.tatajavaaccounts.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.tatajavaaccounts.model.Cuenta;
 
 import java.math.BigDecimal;
 import java.util.List;

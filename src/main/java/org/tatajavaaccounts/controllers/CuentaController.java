@@ -24,7 +24,7 @@ public class CuentaController {
         return new ResponseEntity<>(cuentaService.crearCuenta(nueva_cuenta), HttpStatus.OK);
     }
     @GetMapping("/{cuenta_id}")
-    public ResponseEntity<BaseResponseSimpleDTO> obtenerCuenta(
+    public ResponseEntity<BaseResponseSimpleDTO> obtenerCuentaPorId(
             @Valid @PathVariable("cuenta_id") Long cuentaId
     ){
         return new ResponseEntity<>(cuentaService.obtenerCuenta(cuentaId), HttpStatus.OK);

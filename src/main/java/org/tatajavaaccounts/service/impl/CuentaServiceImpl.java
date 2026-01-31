@@ -49,11 +49,7 @@ public class CuentaServiceImpl implements CuentaService {
     public BaseResponseDTO obtenerTodasLasCuentas() {
         return ResponseBaseMapper.generateOkResponse(cuentaRepository.findAll().
                 stream().
-                map(cuenta -> {
-                    CuentaDTO dto = modelMapper.map(cuenta, CuentaDTO.class);
-                  //  dto.setCliente(cuenta.getIdCliente().getNombre());
-                    return dto;
-                })
+                map(cuenta -> modelMapper.map(cuenta, CuentaDTO.class))
                 .collect(Collectors.toList()));
     }
 
@@ -61,9 +57,9 @@ public class CuentaServiceImpl implements CuentaService {
     public BaseResponseDTO actualizarCuenta(CuentaDTO cuenta, Long idCuenta) {
         try {
             cuentaRepository.findById(idCuenta).orElseThrow(() -> new CuentaException(CuentaException.NO_EXISTE_CUENTA));
-            Cuenta cuentaNuevo = crearCuentaModel(cuenta);
-            cuentaNuevo.setId(idCuenta);
-            return ResponseBaseMapper.generateOkResponseCreateUpdate(cuentaRepository.save(cuentaNuevo).getId());
+            Cuenta cuentaNueva = crearCuentaModel(cuenta);
+            cuentaNueva.setId(idCuenta);
+            return ResponseBaseMapper.generateOkResponseCreateUpdate(cuentaRepository.save(cuentaNueva).getId());
 
         } catch (Exception e) {
 
@@ -85,7 +81,6 @@ public class CuentaServiceImpl implements CuentaService {
 
     private Cuenta crearCuentaModel(CuentaDTO cuenta
     ) {
-      // Object cliente =  clienteClient.getClientById(cuenta.getIdCliente());
         Cuenta nuevaCuenta = new Cuenta();
         nuevaCuenta.setNumeroCuenta(cuenta.getNumeroCuenta());
         nuevaCuenta.setTipo(cuenta.getTipo());
