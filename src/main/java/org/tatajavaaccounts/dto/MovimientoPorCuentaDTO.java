@@ -8,21 +8,13 @@ import java.util.List;
 
 public class MovimientoPorCuentaDTO {
     @JsonProperty("cuenta")
-    private Cuenta cuenta;
+    private CuentaDTO cuenta;
 
     @JsonProperty("saldo")
     private BigDecimal saldo;
 
     @JsonProperty("movimientos")
     private List<MovimientoDTO> movimientos;
-
-    public Cuenta getCuenta() {
-        return cuenta;
-    }
-
-    public void setCuenta(Cuenta cuenta) {
-        this.cuenta = cuenta;
-    }
 
     public List<MovimientoDTO> getMovimientos() {
         return movimientos;
@@ -38,5 +30,13 @@ public class MovimientoPorCuentaDTO {
 
     public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
+    }
+
+    public CuentaDTO getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(CuentaDTO cuenta) {
+        this.cuenta = cuenta;
     }
 }

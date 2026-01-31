@@ -1,5 +1,6 @@
 package org.tatajavaaccounts.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -24,12 +25,14 @@ public class CuentaDTO {
     @JsonProperty("estado")
     private Boolean estado;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @NotNull(message = "El cliente no puede ser nulo.")
     @JsonProperty("id_cliente")
     private Long idCliente;
 
-    @JsonProperty("cliente")
-    private String cliente;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonProperty("nombre_cliente")
+    private String nombreCliente;
 
     public String getIdCuenta() {
         return idCuenta;
@@ -79,11 +82,11 @@ public class CuentaDTO {
         this.idCliente = idCliente;
     }
 
-    public String getCliente() {
-        return cliente;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 }
