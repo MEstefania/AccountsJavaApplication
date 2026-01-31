@@ -22,7 +22,6 @@ public class ClienteClient {
     @Value("${client.api-url}")
     private String urlCliente;
 
-    @Cacheable(value = "clientes", key = "#clienteId")
     public Optional<ClienteDTO> getClientById(Long clientId) {
         try {
             ResponseEntity<BaseResponseSimpleDTO> response =
@@ -44,9 +43,9 @@ public class ClienteClient {
             ClienteDTO clienteDTO = mapper.convertValue(body.getResult(), ClienteDTO.class);
 
             return Optional.of(clienteDTO);
-        }catch (HttpClientErrorException.NotFound ex){
+        }/*catch (HttpClientErrorException.NotFound ex){
             throw new EntityNotFoundException("No se encontro el cliente.");
-        }
+        }*/
         catch (Exception ex) {
             System.out.println("No se pudo obtener cliente {}" + clientId + ex);
             return Optional.empty();

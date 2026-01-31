@@ -27,17 +27,17 @@ public class ReporteServiceImpl implements ReporteService {
     private CuentaRepository cuentaRepository;
     @Autowired
    private ClienteClient clienteClient;
-    // private ClienteRepository clienteRepository;
     @Autowired
     private MovimientoRepository movimientoRepository;
 
     @Override
     public BaseResponseDTO obtenerTodasLasCuentasSegunClienteYFecha(Date fechaInicio, Date fechaFin, Long clienteId) {
-        //Buscar cuentas del cliente
+        //Obtener info del cliente
         Optional<ClienteDTO> clienteOpt = clienteClient.getClientById(clienteId);
         if(clienteOpt.isEmpty()){
             clienteOpt = Optional.of(new ClienteDTO("0", "SERVICIO DE CLIENTES NO DISPONIBLE"));
         }
+        //Obtener listado de cuentas
         List<Cuenta> cuentas = cuentaRepository.findByIdCliente(clienteId).orElseThrow(() -> new CuentaException(CuentaException.NO_TIENE_CUENTA));
         List<MovimientoPorCuentaDTO> movimientosPorCuenta = new ArrayList<>();
         for (Cuenta cuenta : cuentas) {
