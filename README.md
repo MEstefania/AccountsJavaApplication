@@ -1,4 +1,4 @@
-Java version 11
+Java version 17
 Gradle
 BBDD: PostgreSQL
 
