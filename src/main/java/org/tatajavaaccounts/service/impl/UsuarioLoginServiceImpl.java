@@ -1,0 +1,29 @@
+package org.tatajavaaccounts.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.tatajavaaccounts.model.Usuario;
+import org.tatajavaaccounts.repository.UsuarioRepository;
+
+import java.util.ArrayList;
+
+@Service
+public class UsuarioLoginServiceImpl implements UserDetailsService {
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException("Usuario no encontrado: " + username) );
+        return User.builder()
+                .username(usuario.getUsername())
+                .password(usuario.getPassword())
+                .authorities(new ArrayList<>())
+                .build();
+    }
+}

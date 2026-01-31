@@ -15,8 +15,6 @@ import org.tatajavaaccounts.repository.MovimientoRepository;
 import org.tatajavaaccounts.service.ReporteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;

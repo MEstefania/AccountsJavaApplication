@@ -1,5 +1,6 @@
 package org.tatajavaaccounts.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.tatajavaaccounts.dto.MovimientoDTO;
 import org.tatajavaaccounts.dto.respuestaBase.BaseResponseDTO;
@@ -15,7 +16,6 @@ import org.tatajavaaccounts.service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,7 @@
 package org.tatajavaaccounts.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 
 @Entity

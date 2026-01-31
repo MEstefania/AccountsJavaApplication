@@ -1,6 +1,7 @@
 package org.tatajavaaccounts.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.client.HttpClientErrorException;
 import org.tatajavaaccounts.dto.ClienteDTO;
@@ -12,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Component

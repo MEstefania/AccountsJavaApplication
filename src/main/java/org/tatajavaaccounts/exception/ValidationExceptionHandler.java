@@ -1,5 +1,6 @@
 package org.tatajavaaccounts.exception;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.tatajavaaccounts.dto.respuestaBase.BaseResponseDTO;
 import org.tatajavaaccounts.dto.respuestaBase.ResponseBaseMapper;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 

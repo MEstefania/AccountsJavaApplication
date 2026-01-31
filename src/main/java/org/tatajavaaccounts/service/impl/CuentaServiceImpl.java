@@ -1,5 +1,6 @@
 package org.tatajavaaccounts.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.tatajavaaccounts.client.ClienteClient;
 import org.tatajavaaccounts.dto.CuentaDTO;
@@ -13,7 +14,6 @@ import org.tatajavaaccounts.service.CuentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.stream.Collectors;
 
 @Service
