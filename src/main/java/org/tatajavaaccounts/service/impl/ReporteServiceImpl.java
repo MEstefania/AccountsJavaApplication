@@ -1,5 +1,6 @@
 package org.tatajavaaccounts.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.tatajavaaccounts.client.ClienteClient;
 import org.tatajavaaccounts.dto.ClienteDTO;
 import org.tatajavaaccounts.dto.CuentaDTO;
@@ -38,7 +39,8 @@ public class ReporteServiceImpl implements ReporteService {
             clienteOpt = Optional.of(new ClienteDTO("0", "SERVICIO DE CLIENTES NO DISPONIBLE"));
         }
         //Obtener listado de cuentas
-        List<Cuenta> cuentas = cuentaRepository.findByIdCliente(clienteId).orElseThrow(() -> new CuentaException(CuentaException.NO_TIENE_CUENTA));
+        List<Cuenta> cuentas = cuentaRepository.findByIdCliente(clienteId).orElseThrow(() -> new EntityNotFoundException(CuentaException.NO_TIENE_CUENTA));
+        if(cuentas.isEmpty()) throw new EntityNotFoundException(CuentaException.NO_TIENE_CUENTA);
         List<MovimientoPorCuentaDTO> movimientosPorCuenta = new ArrayList<>();
         for (Cuenta cuenta : cuentas) {
             MovimientoPorCuentaDTO cuentaDetallada = new MovimientoPorCuentaDTO();
